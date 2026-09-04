@@ -109,6 +109,7 @@ html.js .cap.in .rv:nth-child(2){transition-delay:.08s}html.js .cap.in .rv:nth-c
 }
 .polvo.fixed{position:fixed;inset:0;z-index:1;pointer-events:none;mix-blend-mode:screen}
 .cap .in{z-index:2}
+.hero-bg video,.cap .foto video,.close-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:inherit}
 </style>
 </head>
 <body class="snap">
@@ -124,7 +125,7 @@ html.js .cap.in .rv:nth-child(2){transition-delay:.08s}html.js .cap.in .rv:nth-c
 <div class="hint" aria-hidden="true"><i></i>Mueva la linterna · baje</div>
 
 <section class="cap" id="c0">
-  <div class="foto"><img src="img/eq/hero-mina.webp" alt="Jumbo de perforación en una galería subterránea" width="1376" height="768" fetchpriority="high"></div><div class="luz"></div>
+  <div class="foto"><img src="img/eq/hero-mina.webp" alt="Jumbo de perforación en una galería subterránea" width="1920" height="1097" fetchpriority="high"><video data-amb autoplay muted loop playsinline preload="metadata" poster="img/eq/hero-mina.webp" aria-hidden="true" tabindex="-1"><source src="video/mina.mp4" type="video/mp4"></video></div><div class="luz"></div>
   <span class="num" aria-hidden="true">00</span>
   <div class="in">
     <span class="k rv">Repuestos y reparación · minería</span>
@@ -184,7 +185,7 @@ html.js .cap.in .rv:nth-child(2){transition-delay:.08s}html.js .cap.in .rv:nth-c
 </section>
 
 <section class="cap cierre" id="c5">
-  <div class="foto"><img src="img/eq/scooptram-st1030.webp" alt="" aria-hidden="true" width="1600" height="1200" loading="lazy" style="object-position:70% 50%"></div><div class="luz"></div>
+  <div class="foto"><img src="img/eq/toro-lh410.jpg" alt="" aria-hidden="true" width="1920" height="1097" loading="lazy"><video data-amb autoplay muted loop playsinline preload="metadata" poster="img/eq/toro-lh410.jpg" aria-hidden="true" tabindex="-1"><source src="video/lhd.mp4" type="video/mp4"></video></div><div class="luz"></div>
   <span class="num" aria-hidden="true">05</span>
   <div class="in">
     <span class="k rv">05 · Contacto</span>
@@ -204,6 +205,10 @@ html.js .cap.in .rv:nth-child(2){transition-delay:.08s}html.js .cap.in .rv:nth-c
 
 <script>
 document.documentElement.classList.replace('nojs','js');
+  // video ambiental: se quita si la persona pidió menos movimiento o ahorro de datos
+  (function(){var vs=document.querySelectorAll('video[data-amb]');var off=matchMedia('(prefers-reduced-motion: reduce)').matches||(navigator.connection&&navigator.connection.saveData);
+    vs.forEach(function(v){if(off){v.remove();return;}v.muted=true;var p=v.play();if(p&&p.catch)p.catch(function(){});});})();
+
   // polvo en suspensión y luz: la foto respira como un plano de video
   (function(){
     var cv=document.getElementById('polvo'); if(!cv) return;

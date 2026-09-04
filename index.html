@@ -57,11 +57,12 @@ h1 em{font-style:normal;color:var(--am)}
 .nota{padding:0 var(--gut) 6vh;max-width:70ch;color:var(--mute);font-size:.95rem}
 .nota b{color:var(--body)}
 .ft{padding:0 var(--gut) 5vh;font-family:"JetBrains Mono",monospace;font-size:.72rem;letter-spacing:.8px;text-transform:uppercase;color:var(--mute);display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-between}
+.hero-bg video,.cap .foto video,.close-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:inherit}
 </style>
 </head>
 <body>
 <section class="hero">
-  <div class="hero-bg"><img src="img/eq/hero-mina.webp" alt="" width="1376" height="768"></div>
+  <div class="hero-bg"><img src="img/eq/hero-mina.webp" alt="" width="1920" height="1097"><video data-amb autoplay muted loop playsinline preload="metadata" poster="img/eq/hero-mina.webp" aria-hidden="true" tabindex="-1"><source src="video/mina.mp4" type="video/mp4"></video></div>
   <img class="hero-iso" src="img/marca/iso-blanco.png" alt="" aria-hidden="true">
   <header class="hd"><img src="img/marca/logo-blanco.png" alt="Mansil"><span>Propuesta web · Digitals · 2026</span></header>
   <div>
@@ -111,5 +112,10 @@ h1 em{font-style:normal;color:var(--am)}
 </section>
 <p class="nota"><b>Sobre las imágenes y el video:</b> las fotos son las que Mansil publica hoy (prensa de Epiroc y Sandvik, y stock), gradadas para que respiren juntas. Las piezas de video y las imágenes generadas se producen con Higgsfield en la siguiente ronda; la estructura ya deja el lugar.</p>
 <footer class="ft"><span>Digitals · propuesta para Mansil</span><span>Todo el contenido proviene de mansil.cl · lo redactado va marcado como propuesto</span></footer>
+<script>
+  // video ambiental: se quita si la persona pidió menos movimiento o ahorro de datos
+  (function(){var vs=document.querySelectorAll('video[data-amb]');var off=matchMedia('(prefers-reduced-motion: reduce)').matches||(navigator.connection&&navigator.connection.saveData);
+    vs.forEach(function(v){if(off){v.remove();return;}v.muted=true;var p=v.play();if(p&&p.catch)p.catch(function(){});});})();
+</script>
 </body>
 </html>
