@@ -276,7 +276,8 @@ document.documentElement.classList.replace('nojs','js');
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -6% 0px',threshold:.06});
     els.forEach(function(el){io.observe(el);});
     requestAnimationFrame(function(){els.forEach(function(el){if(el.getBoundingClientRect().top<innerHeight*.98)el.classList.add('in');});});
-  }else{els.forEach(function(el){el.classList.add('in');});}
+    addEventListener('scroll',function(){for(var i=0;i<els.length;i++){var el=els[i];if(!el.classList.contains('in')){var r=el.getBoundingClientRect();if(r.top<innerHeight*.94&&r.bottom>0)el.classList.add('in');}}},{passive:true});
+}else{els.forEach(function(el){el.classList.add('in');});}
   var np=document.getElementById('np'),eq=document.getElementById('eqp'),nom=document.getElementById('nom'),emp=document.getElementById('emp'),prev=document.getElementById('prev'),wa=document.getElementById('wa'),ml=document.getElementById('ml'),urg='Normal';
   function msg(){var p=np.value.trim(),e=eq.value.trim(),n=nom.value.trim(),m=emp.value.trim(),t='Hola Mansil, necesito cotizar';
     t+=p?(' el repuesto '+p):' un repuesto'; if(e)t+=' para '+e; t+='. Urgencia: '+urg+'.'; if(n||m)t+=' Soy '+[n,m].filter(Boolean).join(', ')+'.'; return t;}
