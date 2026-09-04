@@ -83,7 +83,7 @@ h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--am) 62%
 .hero-sub b{font-weight:600;color:var(--tinta)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.8rem}
 /* ficha del taller: dato vivo */
-.ficha{position:relative;border:1px solid var(--tinta);border-radius:4px;padding:1.4rem 1.4rem 1.6rem;background:var(--papel);display:grid;gap:1.1rem}
+.ficha{position:relative;border:1px solid var(--tinta);border-radius:4px;padding:4.6rem 1.4rem 1.6rem;background:var(--papel);display:grid;gap:1.1rem}
 .ficha .row{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;border-bottom:1px solid var(--hair);padding-bottom:.8rem}
 .ficha .row:last-child{border-bottom:0;padding-bottom:0}
 .ficha b{font-family:var(--fm);font-weight:700;color:var(--tinta);font-size:clamp(1.2rem,2vw,1.7rem);letter-spacing:-.02em}
@@ -91,11 +91,12 @@ h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--am) 62%
 .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#B7B2A8;margin-right:.5rem;vertical-align:middle}
 .dot.on{background:#1F8F4E;box-shadow:0 0 0 4px rgba(31,143,78,.18)}
 /* sello giratorio */
-.sello{position:absolute;right:-26px;top:-46px;width:132px;height:132px;animation:spin 18s linear infinite}
+.sello-w{position:absolute;top:-66px;left:50%;margin-left:-66px;width:132px;height:132px}
+.sello{width:132px;height:132px;animation:spin 18s linear infinite;display:block}
 .sello text{font-family:var(--fm);font-size:10.4px;letter-spacing:2.2px;text-transform:uppercase;fill:var(--tinta);font-weight:700}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.sello{animation:none}}
-@media (max-width:640px){.sello{right:-8px;top:-40px;width:104px;height:104px}.sello text{font-size:9.4px;letter-spacing:1.8px}}
+
 .hero-foto{margin-top:clamp(40px,6vw,80px)}
 .hero-foto img{width:100%;aspect-ratio:16/8;object-fit:cover;object-position:50% 40%;border-radius:14px 14px 260px 14px}
 @media (max-width:640px){.hero-foto img{aspect-ratio:4/3;border-radius:14px 14px 140px 14px}}
@@ -197,7 +198,7 @@ h2{font-weight:800;text-transform:uppercase;letter-spacing:-.025em;line-height:.
         </div>
       </div>
       <aside class="ficha rv" aria-label="Estado del taller">
-        <svg class="sello" viewBox="0 0 132 132" aria-hidden="true"><defs><path id="c" d="M66,66 m-48,0 a48,48 0 1,1 96,0 a48,48 0 1,1 -96,0"/></defs><text><textPath href="#c">Banco de pruebas hidráulico · trazable · Quilicura ·</textPath></text></svg>
+        <div class="sello-w"><svg class="sello" viewBox="0 0 132 132" aria-hidden="true"><defs><path id="c" d="M66,66 m-48,0 a48,48 0 1,1 96,0 a48,48 0 1,1 -96,0"/></defs><text><textPath href="#c">Banco de pruebas hidráulico · trazable · Quilicura ·</textPath></text></svg></div>
         <div class="row"><span class="k">Hora en Santiago</span><b class="big" id="hora">08:00:00</b></div>
         <div class="row"><span class="k">Taller</span><b id="estado"><span class="dot" id="dot"></span>L–V 8:00–17:00</b></div>
         <div class="row"><span class="k">Dirección</span><b style="font-size:1rem;text-align:right">Av. Cañaveral 071, Quilicura</b></div>
