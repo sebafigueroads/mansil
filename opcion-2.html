@@ -102,14 +102,6 @@ h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--am) 62%
 .hero-foto img{width:100%;aspect-ratio:16/8;object-fit:cover;object-position:50% 40%;border-radius:14px 14px 260px 14px}
 @media (max-width:640px){.hero-foto img{aspect-ratio:4/3;border-radius:14px 14px 140px 14px}}
 
-/* ── marquesina ───────────────────────────────────── */
-.marq{border-top:1px solid var(--tinta);border-bottom:1px solid var(--tinta);overflow:hidden;padding:.9rem 0;background:var(--papel)}
-.marq-t{display:flex;width:max-content;gap:2.6rem;padding-left:2.6rem;animation:marq 44s linear infinite}
-.marq-t span{white-space:nowrap;font-family:var(--fm);font-size:.78rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--tinta)}
-.marq-t span::after{content:"◆";color:var(--am);margin-left:2.6rem;font-size:.6rem;vertical-align:middle}
-.marq:hover .marq-t{animation-play-state:paused}
-@keyframes marq{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.marq-t{animation:none;flex-wrap:wrap;width:auto}}
 
 /* ── capítulos ────────────────────────────────────── */
 .cap{padding:clamp(72px,9vw,150px) 0;border-bottom:1px solid var(--hair)}
@@ -175,6 +167,17 @@ h2{font-weight:800;text-transform:uppercase;letter-spacing:-.025em;line-height:.
 .bar .a{background:var(--tinta);color:#fff}
 .bar .w{background:#1F8F4E;color:#fff}
 @media (min-width:900px){.bar{display:none}body{padding-bottom:0}}
+
+/* ── conector: manifiesto cinético (las palabras se encienden con el scroll) ── */
+.mani{position:relative;padding:clamp(56px,9vw,140px) 0 clamp(40px,6vw,90px);overflow:hidden}
+.mani .k{display:block;margin-bottom:1.2rem}
+.mani p{font-weight:800;text-transform:uppercase;letter-spacing:-.025em;line-height:.95;font-size:clamp(1.9rem,5.6vw,5.4rem);text-wrap:balance;max-width:22ch}
+.mani p .w{display:inline-block;transition:opacity .35s ease,color .35s ease;opacity:.16}
+.mani p .w.on{opacity:1}
+.mani p .w.em{color:var(--am)}
+.mani .rule{position:absolute;left:var(--gut);right:var(--gut);top:0;height:1px;background:var(--tinta)}
+.mani .rule::after{content:"";position:absolute;left:0;top:-1px;height:3px;width:var(--prog,0%);background:var(--am);transition:width .2s linear}
+@media (prefers-reduced-motion:reduce){.mani p .w{opacity:1}}
 </style>
 </head>
 <body>
@@ -211,12 +214,7 @@ h2{font-weight:800;text-transform:uppercase;letter-spacing:-.025em;line-height:.
   </div>
 </section>
 
-<div class="marq" aria-label="Lo que hacemos">
-  <div class="marq-t">
-    <span>Bombas hidráulicas</span><span>Brazos completos</span><span>COP 1238 · 1838 · 1840 · SC25</span><span>Tamrock HL500 · HL510 · HLX5</span><span>Unidades de rotación Boomer</span><span>Mantención a terreno</span><span>Tornería</span><span>Fresado</span><span>Recambio de componentes</span>
-    <span>Bombas hidráulicas</span><span>Brazos completos</span><span>COP 1238 · 1838 · 1840 · SC25</span><span>Tamrock HL500 · HL510 · HLX5</span><span>Unidades de rotación Boomer</span><span>Mantención a terreno</span><span>Tornería</span><span>Fresado</span><span>Recambio de componentes</span>
-  </div>
-</div>
+<section class="mani wrap" aria-label="Lo que hacemos"><span class="rule"></span><span class="k">Lo que hacemos</span><p><span class="w">Bombas,</span> <span class="w">brazos</span> <span class="w">completos,</span> <span class="w">perforadoras</span> <span class="w">COP</span> <span class="w">y</span> <span class="w">Tamrock,</span> <span class="w">unidades</span> <span class="w">de</span> <span class="w">rotación.</span> <span class="w">Todo</span> <span class="w">sale</span> <span class="w em">probado</span> <span class="w">en</span> <span class="w">el</span> <span class="w">banco.</span></p></section><!-- COPY PROPUESTO -->
 
 <section class="cap" id="reparacion">
   <div class="wrap">
@@ -326,6 +324,21 @@ h2{font-weight:800;text-transform:uppercase;letter-spacing:-.025em;line-height:.
 
 <script>
 document.documentElement.classList.replace('nojs','js');
+  // manifiesto: cada palabra se enciende según el avance del scroll por la sección
+  (function(){
+    var m=document.querySelector('.mani'); if(!m) return;
+    var ws=[].slice.call(m.querySelectorAll('.w')), rule=m.querySelector('.rule');
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){ws.forEach(function(w){w.classList.add('on');});return;}
+    function step(){
+      var r=m.getBoundingClientRect(), vh=innerHeight;
+      var p=Math.min(1,Math.max(0,(vh*0.85-r.top)/(r.height+vh*0.35)));
+      var n=Math.round(p*ws.length);
+      ws.forEach(function(w,i){w.classList.toggle('on',i<n);});
+      if(rule) rule.style.setProperty('--prog',Math.round(p*100)+'%');
+    }
+    addEventListener('scroll',step,{passive:true}); addEventListener('resize',step); step();
+  })();
+
 (function(){
   var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var els=[].slice.call(document.querySelectorAll('.rv'));

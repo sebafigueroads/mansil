@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es-CL" class="nojs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>MANSIL · LINTERNA</title>
+<meta name="description" content="Repuestos y reparación para equipos mineros. Una experiencia inmersiva: la linterna del minero recorre la faena. Epiroc, Sandvik, Komatsu y CAT. Quilicura.">
+<meta name="theme-color" content="#050505">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MANSIL · Linterna">
+<meta property="og:description" content="Ilumine la pieza que falta. Repuestos originales, OEM y alternativos, reparación hidráulica en taller propio.">
+<meta property="og:image" content="https://sebafigueroads.github.io/mansil/img/og-4.jpg">
+<meta property="og:locale" content="es_CL">
+<link rel="icon" href="img/marca/favicon-512.png">
+<link rel="apple-touch-icon" href="img/marca/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   MANSIL · LINTERNA
+   Inmersiva: la página es una galería a oscuras y el cursor es la
+   linterna del minero. Capítulos a pantalla completa con scroll-snap,
+   el hexágono crece con el avance, y un riel marca dónde estás.
+   ============================================================ */
+@font-face{font-family:"DIN 2014";src:url(fonts/DIN2014-Light.woff2) format("woff2");font-weight:300;font-display:swap}
+@font-face{font-family:"DIN 2014";src:url(fonts/DIN2014-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"DIN 2014";src:url(fonts/DIN2014-DemiBold.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"DIN 2014";src:url(fonts/DIN2014-ExtraBold.woff2) format("woff2");font-weight:800;font-display:swap}
+:root{
+  --bg:#050505; --am:#FABA13; --ink:#F5F3EE; --body:#CFCCC5; --mute:#7E7B75; --hair:rgba(255,255,255,.14);
+  --gut:clamp(20px,5vw,84px); --bar:calc(60px + env(safe-area-inset-bottom));
+  --ease:cubic-bezier(.16,.84,.28,1);
+  --fd:"DIN 2014",-apple-system,"Helvetica Neue",Arial,sans-serif; --fm:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --lx:62%; --ly:45%; --lr:34vmax;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:var(--bg)}
+body{background:var(--bg);color:var(--body);font-family:var(--fd);font-size:clamp(1rem,1.15vw,1.15rem);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+::selection{background:var(--am);color:#050505}
+a:focus-visible,button:focus-visible{outline:2px solid var(--am);outline-offset:3px}
+.k{font-family:var(--fm);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--am)}
+.k.g{color:var(--mute)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:52px;padding:.9rem 1.6rem;border-radius:4px;font-weight:700;font-size:1rem;border:1px solid transparent;transition:transform .25s var(--ease),background .25s}
+.btn-am{background:var(--am);color:#050505}.btn-am:hover{background:#FFC838;transform:translateY(-2px)}
+.btn-o{background:transparent;color:var(--ink);border-color:rgba(255,255,255,.4)}.btn-o:hover{border-color:#fff}
+
+/* scroll-snap de capítulos */
+html.js .snap{scroll-snap-type:y proximity}
+.cap{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden;isolation:isolate;scroll-snap-align:start}
+.cap .foto{position:absolute;inset:0;z-index:-2}
+.cap .foto img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 1.8s var(--ease)}
+.cap.in .foto img{transform:scale(1)}
+/* la linterna: la foto sólo se ve donde alumbra */
+html.js .cap .foto::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(circle var(--lr) at var(--lx) var(--ly),rgba(5,5,5,0) 0%,rgba(5,5,5,.25) 38%,rgba(5,5,5,.86) 72%,rgba(5,5,5,.97) 100%)}
+html.nojs .cap .foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,5,.3),rgba(5,5,5,.9))}
+.cap .luz{position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(circle calc(var(--lr)*.55) at var(--lx) var(--ly),rgba(250,186,19,.14),rgba(250,186,19,0) 70%);mix-blend-mode:screen}
+.cap .in{position:relative;padding:18vh var(--gut) 12vh;display:grid;gap:1.4rem;max-width:1600px;width:100%;margin:0 auto}
+.num{font-family:var(--fm);font-weight:700;font-size:clamp(4rem,14vw,13rem);line-height:.8;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.28);position:absolute;right:var(--gut);top:12vh;pointer-events:none;user-select:none}
+h1,.cap h2{font-weight:800;text-transform:uppercase;line-height:.88;letter-spacing:-.03em;color:var(--ink);text-wrap:balance}
+h1{font-size:clamp(3rem,10.6vw,10.4rem);max-width:12ch}
+h1 em{font-style:normal;color:var(--am)}
+.cap h2{font-size:clamp(2.4rem,7vw,7rem);max-width:13ch}
+.cap p.t{max-width:52ch;font-size:clamp(1.02rem,1.4vw,1.28rem);font-weight:300;color:var(--body)}
+.cap p.t b{color:var(--ink);font-weight:600}
+.data{display:flex;flex-wrap:wrap;gap:1.4rem 2.6rem;padding-top:1.4rem;border-top:1px solid var(--hair)}
+.data b{display:block;font-family:var(--fm);font-weight:700;font-size:clamp(1.5rem,2.8vw,2.3rem);color:var(--ink);letter-spacing:-.02em;line-height:1}
+.data .k{display:block;margin-top:.4rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chips span{font-family:var(--fm);font-size:.74rem;letter-spacing:.8px;text-transform:uppercase;border:1px solid var(--hair);padding:.42rem .7rem;border-radius:3px;color:var(--body)}
+.hex{position:fixed;right:-8vw;bottom:-10vh;height:36vh;width:auto;opacity:.08;pointer-events:none;z-index:0;transform:scale(var(--hs,1)) rotate(var(--hr,0deg));transition:transform .3s linear;will-change:transform}
+/* cabecera y riel */
+.hd{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:14px var(--gut);pointer-events:none}
+.hd>*{pointer-events:auto}.hd img{height:38px;width:auto}
+.hd .tel{font-family:var(--fm);font-size:.85rem;font-weight:700;color:var(--am)}
+@media (min-width:900px){.hd img{height:46px}}
+.rail{position:fixed;right:calc(var(--gut) - 6px);top:50%;transform:translateY(-50%);z-index:50;display:none;flex-direction:column;gap:14px}
+@media (min-width:900px){.rail{display:flex}}
+.rail a{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.28);position:relative;transition:background .3s,transform .3s}
+.rail a.on{background:var(--am);transform:scale(1.5)}
+.rail a span{position:absolute;right:18px;top:-4px;font-family:var(--fm);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--mute);white-space:nowrap;opacity:0;transition:opacity .3s}
+.rail a:hover span,.rail a.on span{opacity:1}
+.hint{position:fixed;left:var(--gut);bottom:2.6vh;z-index:50;font-family:var(--fm);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--mute);display:none;gap:.8rem;align-items:center}
+@media (min-width:900px){.hint{display:flex}}
+.hint i{display:block;width:1px;height:38px;background:var(--hair);position:relative;overflow:hidden}
+.hint i::after{content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:var(--am);animation:drop 1.8s var(--ease) infinite}
+@keyframes drop{to{top:110%}}
+/* reveal */
+html.js .rv{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+html.js .cap.in .rv{opacity:1;transform:none}
+html.js .cap.in .rv:nth-child(2){transition-delay:.08s}html.js .cap.in .rv:nth-child(3){transition-delay:.16s}html.js .cap.in .rv:nth-child(4){transition-delay:.24s}
+/* cierre y barra */
+.cierre .in{align-content:center}
+.cierre .row{display:flex;flex-wrap:wrap;gap:1rem}
+.cierre .dir{display:grid;gap:.3rem;color:var(--mute);font-size:.95rem}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#000;padding-bottom:env(safe-area-inset-bottom)}
+.bar a{display:flex;align-items:center;justify-content:center;min-height:60px;font-weight:700}
+.bar .a{background:var(--am);color:#050505}.bar .w{background:#1F8F4E;color:#fff}
+@media (min-width:900px){.bar{display:none}}
+@media (max-width:899px){body{padding-bottom:var(--bar)}.cap:last-child{min-height:calc(100svh - var(--bar))}}
+@media (prefers-reduced-motion:reduce){
+  html.js .cap .foto::after{background:linear-gradient(180deg,rgba(5,5,5,.3),rgba(5,5,5,.9))}
+  .cap .luz{display:none}.cap .foto img{transform:none;transition:none}.hint i::after{animation:none}
+  html.js .rv{opacity:1;transform:none;transition:none}.hex{transition:none}
+}
+.polvo.fixed{position:fixed;inset:0;z-index:1;pointer-events:none;mix-blend-mode:screen}
+.cap .in{z-index:2}
+</style>
+</head>
+<body class="snap">
+<header class="hd">
+  <a href="#c0" aria-label="Mansil, inicio"><img src="img/marca/logo-blanco.png" alt="Mansil" width="470" height="175"></a>
+  <a class="tel" href="tel:+56963172581">+56 9 6317 2581</a>
+</header>
+<img class="hex" src="img/marca/iso-blanco.png" alt="" aria-hidden="true">
+<canvas class="polvo fixed" id="polvo" aria-hidden="true"></canvas>
+<nav class="rail" aria-label="Capítulos">
+  <a href="#c0" class="on"><span>Portada</span></a><a href="#c1"><span>Perforadoras</span></a><a href="#c2"><span>Bombas y brazos</span></a><a href="#c3"><span>Banco de pruebas</span></a><a href="#c4"><span>Faenas</span></a><a href="#c5"><span>Contacto</span></a>
+</nav>
+<div class="hint" aria-hidden="true"><i></i>Mueva la linterna · baje</div>
+
+<section class="cap" id="c0">
+  <div class="foto"><img src="img/eq/hero-mina.webp" alt="Jumbo de perforación en una galería subterránea" width="1376" height="768" fetchpriority="high"></div><div class="luz"></div>
+  <span class="num" aria-hidden="true">00</span>
+  <div class="in">
+    <span class="k rv">Repuestos y reparación · minería</span>
+    <h1 class="rv">Ilumine la pieza <em>que falta.</em></h1><!-- COPY PROPUESTO -->
+    <p class="t rv">Repuestos <b>originales, OEM y alternativos</b> para equipos mineros, con respaldo técnico y reparación hidráulica en nuestro propio taller. Más de 20 años en la minería.</p>
+    <div class="data rv">
+      <div><b><span id="cnt" data-to="1169">0</span></b><span class="k g">repuestos publicados</span></div>
+      <div><b>+20</b><span class="k g">años</span></div>
+      <div><b>4</b><span class="k g">marcas</span></div>
+      <div><b id="hora">08:00:00</b><span class="k g" id="estado">Quilicura</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cap" id="c1">
+  <div class="foto"><img src="img/eq/jumbo-frente.jpg" alt="Jumbo de perforación frontal" width="1264" height="672" loading="lazy"></div><div class="luz"></div>
+  <span class="num" aria-hidden="true">01</span>
+  <div class="in">
+    <span class="k rv">01 · Perforadoras</span>
+    <h2 class="rv">COP y Tamrock, reparadas en taller</h2>
+    <p class="t rv">Reparación integral de perforadoras <b>Epiroc COP 1238, 1838, 1840 y SC25</b> y <b>Tamrock HL500, HL510 y HLX5</b>. También modelos Montabert y otros equipos equivalentes.</p>
+    <div class="chips rv"><span>COP 1238</span><span>COP 1838</span><span>COP 1840</span><span>COP SC25</span><span>HL500</span><span>HL510</span><span>HLX5</span><span>Montabert</span></div>
+  </div>
+</section>
+
+<section class="cap" id="c2">
+  <div class="foto"><img src="img/eq/toro-lh410.jpg" alt="Cargador subterráneo con los focos encendidos" width="1724" height="1050" loading="lazy"></div><div class="luz"></div>
+  <span class="num" aria-hidden="true">02</span>
+  <div class="in">
+    <span class="k rv">02 · Bombas, brazos y rotación</span>
+    <h2 class="rv">Brazos completos, directo en nuestro taller</h2>
+    <p class="t rv">Bombas hidráulicas de distintos fabricantes, <b>brazos completos para jumbos y perforadoras</b> y unidades de rotación de equipos Boomer. Con foco en continuidad operacional y respuesta oportuna.</p>
+    <div class="chips rv"><span>Bombas hidráulicas</span><span>Brazos completos</span><span>Unidades de rotación Boomer</span><span>Tornería · fresado</span></div>
+  </div>
+</section>
+
+<section class="cap" id="c3">
+  <div class="foto"><img src="img/eq/sandvik-dl432i.jpg" alt="Equipo de perforación de producción en una galería" width="1736" height="974" loading="lazy"></div><div class="luz"></div>
+  <span class="num" aria-hidden="true">03</span>
+  <div class="in">
+    <span class="k rv">03 · Banco de pruebas</span>
+    <h2 class="rv">Nada sale sin probarse</h2><!-- COPY PROPUESTO -->
+    <p class="t rv">Todas nuestras reparaciones pasan por rigurosos controles de calidad en un <b>banco de pruebas hidráulico de alto rendimiento</b>: resultados confiables, seguros y trazables para cada componente intervenido.</p>
+    <div class="data rv"><div><b>1.169</b><span class="k g">repuestos en catálogo</span></div><div><b>52</b><span class="k g">categorías</span></div><div><b>3</b><span class="k g">orígenes · original · OEM · alternativo</span></div></div>
+  </div>
+</section>
+
+<section class="cap" id="c4">
+  <div class="foto"><img src="img/eq/camion-cielo.jpg" alt="Camión minero en rajo abierto" width="1024" height="683" loading="lazy"></div><div class="luz"></div>
+  <span class="num" aria-hidden="true">04</span>
+  <div class="in">
+    <span class="k rv">04 · Faenas</span>
+    <h2 class="rv">Cobre, sal y roca dura</h2>
+    <p class="t rv">Minería del cobre a rajo abierto y subterránea: roca abrasiva, operación 24/7, altura y faenas remotas. Minería de sal y salinas: humedad, corrosión y material particulado. <b>Ahí ponemos stock y criterio técnico</b> para elegir según urgencia, criticidad y presupuesto.</p>
+    <div class="chips rv"><span>Pit Viper 271</span><span>SmartROC D65</span><span>Scooptram ST1030</span><span>Minetruck MT22</span><span>Komatsu WA900</span><span>CAT 938K</span><span>Sandvik TH315</span></div>
+  </div>
+</section>
+
+<section class="cap cierre" id="c5">
+  <div class="foto"><img src="img/eq/scooptram-st1030.webp" alt="" aria-hidden="true" width="1600" height="1200" loading="lazy" style="object-position:70% 50%"></div><div class="luz"></div>
+  <span class="num" aria-hidden="true">05</span>
+  <div class="in">
+    <span class="k rv">05 · Contacto</span>
+    <h2 class="rv">Dinos qué equipo se detuvo.</h2><!-- COPY PROPUESTO -->
+    <div class="row rv">
+      <a class="btn btn-am" href="https://api.whatsapp.com/send?phone=56963172581&text=Hola%20Mansil%2C%20necesito%20cotizar%20un%20repuesto." target="_blank" rel="noopener">WhatsApp +56 9 6317 2581</a>
+      <a class="btn btn-o" href="mailto:ventas@mansil.cl">ventas@mansil.cl</a>
+    </div>
+    <div class="dir rv"><span>Av. Cañaveral 071, Quilicura · Región Metropolitana</span><span>Lunes a viernes · 8:00 a 17:00 hrs</span><span class="k g" style="margin-top:.6rem">Mansil · reparación y venta de repuestos mineros</span></div>
+  </div>
+</section>
+
+<nav class="bar" aria-label="Acciones rápidas">
+  <a class="a" href="mailto:ventas@mansil.cl">Cotizar</a>
+  <a class="w" href="https://api.whatsapp.com/send?phone=56963172581" target="_blank" rel="noopener">WhatsApp</a>
+</nav>
+
+<script>
+document.documentElement.classList.replace('nojs','js');
+  // polvo en suspensión y luz: la foto respira como un plano de video
+  (function(){
+    var cv=document.getElementById('polvo'); if(!cv) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){cv.remove();return;}
+    var ctx=cv.getContext('2d'),W,H,P=[],N=110,fixed=cv.classList.contains('fixed');
+    function size(){var r=fixed?{width:innerWidth,height:innerHeight}:cv.parentNode.getBoundingClientRect();W=cv.width=Math.round(r.width);H=cv.height=Math.round(r.height);}
+    function mk(){return {x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.6+.3,vx:(Math.random()-.3)*.18,vy:-(Math.random()*.22+.04),a:Math.random()*.5+.15,ph:Math.random()*6.28,am:Math.random()<.35};}
+    size(); for(var i=0;i<N;i++)P.push(mk());
+    var run=true; document.addEventListener('visibilitychange',function(){run=!document.hidden;});
+    addEventListener('resize',size);
+    (function loop(t){
+      if(run){ctx.clearRect(0,0,W,H);
+        for(var i=0;i<P.length;i++){var p=P[i];p.x+=p.vx+Math.sin(t/1400+p.ph)*.08;p.y+=p.vy;
+          if(p.y<-4||p.x<-4||p.x>W+4){P[i]=mk();P[i].y=H+4;continue;}
+          var a=p.a*(0.55+0.45*Math.sin(t/900+p.ph));
+          ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);ctx.fillStyle=p.am?'rgba(250,186,19,'+a.toFixed(3)+')':'rgba(255,248,230,'+(a*.8).toFixed(3)+')';ctx.fill();}
+      }
+      requestAnimationFrame(loop);
+    })(0);
+  })();
+
+(function(){
+  var rm=matchMedia('(prefers-reduced-motion: reduce)').matches, root=document.documentElement;
+  var caps=[].slice.call(document.querySelectorAll('.cap')), dots=[].slice.call(document.querySelectorAll('.rail a'));
+  // capítulos: entran, y el riel marca el activo
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('in');var i=caps.indexOf(e.target);dots.forEach(function(d,j){d.classList.toggle('on',j===i);});}
+  });},{threshold:.45});
+  caps.forEach(function(c){io.observe(c);});
+  // la linterna sigue al puntero; sin puntero, hace un barrido lento
+  var tx=62,ty=45,cx=62,cy=45,pointer=false,t0=performance.now();
+  addEventListener('pointermove',function(e){pointer=true;tx=e.clientX/innerWidth*100;ty=e.clientY/innerHeight*100;},{passive:true});
+  addEventListener('touchmove',function(e){var t=e.touches[0];if(t){pointer=true;tx=t.clientX/innerWidth*100;ty=t.clientY/innerHeight*100;}},{passive:true});
+  function loop(t){
+    if(!pointer){var s=(t-t0)/1000;tx=50+Math.sin(s*.35)*26;ty=46+Math.cos(s*.27)*16;}
+    cx+=(tx-cx)*.08;cy+=(ty-cy)*.08;
+    root.style.setProperty('--lx',cx.toFixed(2)+'%');root.style.setProperty('--ly',cy.toFixed(2)+'%');
+    // el hexágono crece y gira con el avance
+    var p=scrollY/Math.max(1,document.body.scrollHeight-innerHeight);
+    root.style.setProperty('--hs',(1+p*.9).toFixed(3));root.style.setProperty('--hr',(p*18).toFixed(1)+'deg');
+    requestAnimationFrame(loop);
+  }
+  if(!rm){requestAnimationFrame(loop);}else{root.style.setProperty('--lr','120vmax');}
+  // contador real hasta 1.169 (productos publicados en el catálogo de mansil.cl)
+  var c=document.getElementById('cnt'),to=+c.dataset.to,done=false;
+  function fmt(n){return n.toLocaleString('es-CL');}
+  function run(){if(done)return;done=true;if(rm){c.textContent=fmt(to);return;}
+    var s=performance.now(),d=1900;(function f(t){var p=Math.min(1,(t-s)/d);p=1-Math.pow(1-p,3);c.textContent=fmt(Math.round(to*p));if(p<1)requestAnimationFrame(f);})(s);}
+  setTimeout(run,500);
+  // hora real de Santiago y estado del taller (L–V 8:00–17:00)
+  var h=document.getElementById('hora'),st=document.getElementById('estado');
+  function tick(){var f=new Intl.DateTimeFormat('es-CL',{timeZone:'America/Santiago',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false,weekday:'short'}),p={};
+    f.formatToParts(new Date()).forEach(function(x){p[x.type]=x.value;});h.textContent=p.hour+':'+p.minute+':'+p.second;
+    var wd=(p.weekday||'').toLowerCase().slice(0,3),hh=+p.hour,ab=!(wd==='sáb'||wd==='sab'||wd==='dom')&&hh>=8&&hh<17;
+    st.textContent=ab?'Quilicura · taller abierto':'Quilicura · abre L–V 8:00';}
+  tick();setInterval(tick,1000);
+})();
+</script>
+</body>
+</html>

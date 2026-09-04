@@ -97,14 +97,6 @@ h1{font-weight:800;text-transform:uppercase;line-height:.86;letter-spacing:-.035
 .q .alt{text-align:center;font-size:.86rem;color:var(--mute-l)}
 .q .alt a{color:var(--am);font-weight:700}
 
-/* ── marquesina de números de parte reales ─────────── */
-.marq{background:var(--tinta);border-top:1px solid var(--hair-l);border-bottom:1px solid var(--hair-l);overflow:hidden;padding:.9rem 0}
-.marq-t{display:flex;width:max-content;gap:2.4rem;padding-left:2.4rem;animation:marq 40s linear infinite}
-.marq-t span{white-space:nowrap;font-family:var(--fm);font-size:.8rem;letter-spacing:1.2px;color:#fff}
-.marq-t span::after{content:"/";color:var(--am);margin-left:2.4rem}
-.marq:hover .marq-t{animation-play-state:paused}
-@keyframes marq{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.marq-t{animation:none;flex-wrap:wrap;width:auto}}
 
 /* ── secciones ─────────────────────────────────────── */
 .sec{padding:clamp(72px,9vw,150px) 0}
@@ -169,6 +161,17 @@ h2.t{font-weight:800;text-transform:uppercase;letter-spacing:-.025em;line-height
 .bar .a{background:var(--am);color:var(--tinta)}
 .bar .w{background:#1F8F4E;color:#fff}
 @media (min-width:900px){.bar{display:none}body{padding-bottom:0}}
+
+/* ── conector: manifiesto cinético (las palabras se encienden con el scroll) ── */
+.mani{position:relative;padding:clamp(56px,9vw,140px) 0 clamp(40px,6vw,90px);overflow:hidden}
+.mani .k{display:block;margin-bottom:1.2rem}
+.mani p{font-weight:800;text-transform:uppercase;letter-spacing:-.025em;line-height:.95;font-size:clamp(1.9rem,5.6vw,5.4rem);text-wrap:balance;max-width:22ch}
+.mani p .w{display:inline-block;transition:opacity .35s ease,color .35s ease;opacity:.16}
+.mani p .w.on{opacity:1}
+.mani p .w.em{color:var(--am)}
+.mani .rule{position:absolute;left:var(--gut);right:var(--gut);top:0;height:1px;background:var(--hair-l)}
+.mani .rule::after{content:"";position:absolute;left:0;top:-1px;height:3px;width:var(--prog,0%);background:var(--am);transition:width .2s linear}
+@media (prefers-reduced-motion:reduce){.mani p .w{opacity:1}}
 </style>
 </head>
 <body>
@@ -224,12 +227,7 @@ h2.t{font-weight:800;text-transform:uppercase;letter-spacing:-.025em;line-height
   </section>
 </div>
 
-<div class="marq" aria-label="Números de parte del catálogo">
-  <div class="marq-t">
-    <span>3115-2950-00</span><span>3128-0770-00</span><span>3115-2126-00</span><span>3222-3342-28</span><span>3222-3260-81</span><span>3115-1926-02</span><span>3222-3165-79</span><span>3115-9150-96</span><span>Pistón</span><span>Manguera</span><span>Kit de sello</span><span>Acoplamiento</span><span>Bomba de engranajes</span><span>Cuna</span><span>Parte frontal</span><span>Diafragma</span>
-    <span>3115-2950-00</span><span>3128-0770-00</span><span>3115-2126-00</span><span>3222-3342-28</span><span>3222-3260-81</span><span>3115-1926-02</span><span>3222-3165-79</span><span>3115-9150-96</span><span>Pistón</span><span>Manguera</span><span>Kit de sello</span><span>Acoplamiento</span><span>Bomba de engranajes</span><span>Cuna</span><span>Parte frontal</span><span>Diafragma</span>
-  </div>
-</div>
+<section class="mani wrap" aria-label="Cómo cotizamos"><span class="rule"></span><span class="k">Cómo cotizamos</span><p><span class="w">Un</span> <span class="w">número</span> <span class="w">de</span> <span class="w">parte.</span> <span class="w">Una</span> <span class="w">respuesta</span> <span class="w">dentro</span> <span class="w">de</span> <span class="w em">24</span> <span class="w">horas.</span> <span class="w">Original,</span> <span class="w">OEM</span> <span class="w">o</span> <span class="w">alternativo,</span> <span class="w">con</span> <span class="w em">criterio</span> <span class="w">técnico.</span></p></section><!-- COPY PROPUESTO -->
 
 <section class="sec" id="piezas" style="padding-left:0;padding-right:0">
   <div class="wrap"><div class="sec-h rv"><span class="num">01 · Piezas del catálogo</span><h2 class="t">Así se ve un número de parte</h2><p class="lead">Ocho de los 1.169 repuestos publicados. Deslice para ver más; toque uno para cotizarlo.</p></div></div>
@@ -323,6 +321,21 @@ h2.t{font-weight:800;text-transform:uppercase;letter-spacing:-.025em;line-height
 
 <script>
 document.documentElement.classList.replace('nojs','js');
+  // manifiesto: cada palabra se enciende según el avance del scroll por la sección
+  (function(){
+    var m=document.querySelector('.mani'); if(!m) return;
+    var ws=[].slice.call(m.querySelectorAll('.w')), rule=m.querySelector('.rule');
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){ws.forEach(function(w){w.classList.add('on');});return;}
+    function step(){
+      var r=m.getBoundingClientRect(), vh=innerHeight;
+      var p=Math.min(1,Math.max(0,(vh*0.85-r.top)/(r.height+vh*0.35)));
+      var n=Math.round(p*ws.length);
+      ws.forEach(function(w,i){w.classList.toggle('on',i<n);});
+      if(rule) rule.style.setProperty('--prog',Math.round(p*100)+'%');
+    }
+    addEventListener('scroll',step,{passive:true}); addEventListener('resize',step); step();
+  })();
+
 (function(){
   var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var els=[].slice.call(document.querySelectorAll('.rv'));
