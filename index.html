@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>MANSIL · 3 direcciones</title>
+<meta name="description" content="Tres direcciones de web para Mansil, repuestos y reparación para minería. Propuesta de Digitals.">
+<meta name="theme-color" content="#0B0B0C">
+<meta property="og:title" content="MANSIL · Propuesta web · 3 direcciones">
+<meta property="og:description" content="«Frente de Roca», «Taller Abierto» y «Número de Parte». Tres webs, una marca.">
+<meta property="og:image" content="https://sebafigueroads.github.io/mansil/img/og-1.jpg">
+<link rel="icon" href="img/marca/favicon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:"DIN 2014";src:url(fonts/DIN2014-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"DIN 2014";src:url(fonts/DIN2014-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"DIN 2014";src:url(fonts/DIN2014-ExtraBold.woff2) format("woff2");font-weight:800;font-display:swap}
+:root{--bg:#0B0B0C;--am:#FABA13;--ink:#F5F3EE;--body:#CFCCC5;--mute:#8F8C85;--hair:#2A2A2E;--gut:clamp(20px,5vw,84px);--ease:cubic-bezier(.16,.84,.28,1)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--body);font-family:"DIN 2014",-apple-system,"Helvetica Neue",Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+.k{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--am)}
+.hero{position:relative;min-height:88svh;display:grid;align-items:end;overflow:hidden;padding:18vh var(--gut) 8vh}
+.hero-bg{position:absolute;inset:0;z-index:-1}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:60% 50%}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,12,.3),rgba(11,11,12,.55) 50%,rgba(11,11,12,.97))}
+.hero-iso{position:absolute;right:-6vw;top:6vh;height:40vh;opacity:.1;z-index:0;pointer-events:none}
+.hd{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:16px var(--gut)}
+.hd img{height:40px;width:auto}
+.hd span{font-family:"JetBrains Mono",monospace;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;color:var(--mute)}
+h1{font-weight:800;text-transform:uppercase;line-height:.88;letter-spacing:-.03em;color:var(--ink);font-size:clamp(2.8rem,9vw,8.6rem);text-wrap:balance;max-width:14ch;margin-top:1rem}
+h1 em{font-style:normal;color:var(--am)}
+.hero p{max-width:60ch;margin-top:1.4rem;font-size:clamp(1rem,1.3vw,1.2rem);font-weight:400}
+.hero .fila{margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:.6rem 1.8rem;font-family:"JetBrains Mono",monospace;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;color:var(--mute)}
+.ops{padding:clamp(40px,6vw,90px) var(--gut) 10vh;display:grid;gap:1.5rem}
+@media (min-width:900px){.ops{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4vw}}
+.op{position:relative;display:grid;align-content:end;min-height:min(78svh,720px);border-radius:8px;overflow:hidden;isolation:isolate;transition:transform .5s var(--ease)}
+.op:hover{transform:translateY(-6px)}
+.op img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.2s var(--ease)}
+.op:hover img{transform:scale(1.05)}
+.op::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,11,12,.05) 0%,rgba(11,11,12,.35) 45%,rgba(11,11,12,.95) 100%)}
+.op .in{padding:clamp(22px,2.6vw,36px)}
+.op .n{font-family:"JetBrains Mono",monospace;font-size:.72rem;letter-spacing:2px;color:var(--am)}
+.op h2{margin-top:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:-.025em;line-height:.9;font-size:clamp(2rem,3.4vw,3.4rem);color:var(--ink)}
+.op .h{margin-top:1rem;font-size:1.05rem;color:var(--ink);font-weight:700}
+.op p{margin-top:.6rem;font-size:.95rem;color:var(--body)}
+.op .t{margin-top:1rem;display:flex;flex-wrap:wrap;gap:.4rem}
+.op .t span{font-family:"JetBrains Mono",monospace;font-size:.68rem;letter-spacing:.8px;text-transform:uppercase;border:1px solid rgba(255,255,255,.25);padding:.32rem .55rem;border-radius:3px;color:var(--body)}
+.op .go{margin-top:1.4rem;display:inline-flex;align-items:center;gap:.5rem;background:var(--am);color:#0B0B0C;font-weight:800;padding:.85rem 1.3rem;border-radius:4px;min-height:48px}
+.op.b .n,.op.b .go{background:none}.op.b .go{background:#F3F1EC;color:#111}
+.op.c .go{background:var(--am)}
+.ft{padding:0 var(--gut) 5vh;font-family:"JetBrains Mono",monospace;font-size:.72rem;letter-spacing:.8px;text-transform:uppercase;color:var(--mute);display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-between}
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="hero-bg"><img src="img/eq/hero-mina.webp" alt="" width="1376" height="768"></div>
+  <img class="hero-iso" src="img/marca/iso-blanco.png" alt="" aria-hidden="true">
+  <header class="hd"><img src="img/marca/logo-blanco.png" alt="Mansil"><span>Propuesta web · Digitals · 2026</span></header>
+  <div>
+    <span class="k">Tres direcciones · una marca</span>
+    <h1>Mansil merece una web del <em>tamaño de sus máquinas.</em></h1>
+    <p>Tres webs completas, genuinamente distintas, construidas con el negro y el amarillo de Mansil, su tipografía DIN 2014 y su contenido real: 1.169 repuestos en catálogo, cuatro marcas, más de 20 años, taller y banco de pruebas en Quilicura. Elija una dirección; la afinamos conversando.</p>
+    <div class="fila"><span>Mobile-first · 390 px</span><span>Hexágono a escala monumental</span><span>DIN 2014 real de la marca</span><span>Datos vivos verdaderos</span></div>
+  </div>
+</section>
+
+<section class="ops" aria-label="Direcciones">
+  <a class="op a" href="opcion-1.html">
+    <img src="img/eq/hero-mina.webp" alt="" width="1376" height="768" loading="lazy">
+    <div class="in">
+      <span class="n">01</span>
+      <h2>«Frente de Roca»</h2>
+      <p class="h">Oscuro y cinematográfico: la mina de noche.</p>
+      <p>El jumbo encendido a pantalla completa, el hexágono como marca de agua y «Tu aliado en la minería» a 10 vw. Un contador cuenta de verdad hasta los 1.169 repuestos del catálogo; la hora de Santiago dice si el taller está abierto. Lámina amarilla con cifras, faenas de cobre y sal.</p>
+      <div class="t"><span>Negro · amarillo</span><span>DIN 2014 + Mono</span><span>Marquesina de equipos</span><span>Contador real</span></div>
+      <span class="go">Ver dirección →</span>
+    </div>
+  </a>
+  <a class="op b" href="opcion-2.html">
+    <img src="img/eq/tecnico.webp" alt="" width="1200" height="900" loading="lazy">
+    <div class="in">
+      <span class="n">02</span>
+      <h2>«Taller Abierto»</h2>
+      <p class="h">Editorial claro: papel, tinta y señalética.</p>
+      <p>La dirección que vende el taller: reparación integral, mantención a terreno paso a paso, mecanizado, y las personas con nombre y cara. Una ficha con reloj real dice «Abierto · cierra en 3 h» según el horario L–V 8–17. Sello giratorio del banco de pruebas, fotos con marcos orgánicos, cero grillas.</p>
+      <div class="t"><span>Papel · tinta · amarillo</span><span>Capítulos numerados</span><span>Reloj del taller</span><span>Equipo real</span></div>
+      <span class="go">Ver dirección →</span>
+    </div>
+  </a>
+  <a class="op c" href="opcion-3.html">
+    <img src="img/eq/scooptram-st1030.webp" alt="" width="1600" height="1200" loading="lazy">
+    <div class="in">
+      <span class="n">03</span>
+      <h2>«Número de Parte»</h2>
+      <p class="h">Conversión pura sobre amarillo pleno.</p>
+      <p>«Dígame el número de parte.» El cotizador arma el mensaje solo: N° de parte, equipo (con los 70 modelos reales que Mansil atiende), urgencia, y sale por WhatsApp o correo. Tira de piezas reales del catálogo que se cargan al tocarlas, origen original/OEM/alternativo, las 16 opiniones de Google.</p>
+      <div class="t"><span>Amarillo pleno · negro</span><span>Cotizador con datalist real</span><span>Piezas del catálogo</span><span>4,8 en Google</span></div>
+      <span class="go">Ver dirección →</span>
+    </div>
+  </a>
+</section>
+<footer class="ft"><span>Digitals · propuesta para Mansil</span><span>Todo el contenido proviene de mansil.cl · lo redactado va marcado como propuesto</span></footer>
+</body>
+</html>
