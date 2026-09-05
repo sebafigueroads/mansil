@@ -357,7 +357,7 @@ document.documentElement.classList.replace('nojs','js');
     var wd=(p.weekday||'').toLowerCase().slice(0,3),hh=+p.hour,mm=+p.minute;
     var finde=(wd==='sáb'||wd==='sab'||wd==='dom'),abierto=!finde&&hh>=8&&hh<17;
     d.className='dot'+(abierto?' on':'');
-    var txt=abierto?('Abierto · cierra en '+(16-hh)+' h '+(60-mm)+' min'):(finde?'Cerrado · abre el lunes 8:00':(hh<8?'Cerrado · abre hoy 8:00':'Cerrado · abre mañana 8:00'));
+    var txt=abierto?('Abierto · cierra en '+Math.floor(((17-hh)*60-mm)/60)+' h '+(((17-hh)*60-mm)%60)+' min'):(finde?'Cerrado · abre el lunes 8:00':(hh<8?'Cerrado · abre hoy 8:00':'Cerrado · abre mañana 8:00'));
     s.innerHTML='';s.appendChild(d);s.appendChild(document.createTextNode(txt));
   }
   tick();setInterval(tick,1000);
